@@ -149,6 +149,81 @@ cat backup.sql | docker-compose exec -T db psql -U shelter_user shelter_db
 - Backup automático recomendado
 - Acesso restrito à rede Docker interna
 
+## 🔐 Configuração de SSL com Certbot
+
+### Pré-requisitos:
+- Domínio apontando corretamente para o IP do servidor (85.31.239.235)
+- Nginx configurado e funcionando
+- Porta 80 aberta no firewall
+
+### Configuração básica:
+```bash
+# Instalar Certbot (se ainda não tiver)
+sudo apt update
+sudo apt install certbot python3-certbot-nginx
+
+# Executar Certbot para obter certificado
+sudo certbot --nginx -d theshelter.foundation -d www.theshelter.foundation
+```
+
+### ⚠️ Problema comum: Cloudflare Proxy
+Se você estiver usando Cloudflare com proxy (nuvem laranja), o Certbot pode falhar porque as requisições de validação vão para os IPs do Cloudflare em vez do servidor real.
+
+#### Solução para Cloudflare:
+
+**Opção 1: Desativar proxy temporariamente (RECOMENDADO)**
+1. Acesse https://dash.cloudflare.com
+2. Vá para a zona do domínio `theshelter.foundation`
+3. Encontre o registro A para `theshelter.foundation`
+4. Clique no ícone de nuvem laranja para desativar o proxy (ficará cinza)
+5. Aguarde 5-10 minutos para propagação DNS
+6. Execute o Certbot:
+   ```bash
+   sudo certbot --nginx -d theshelter.foundation -d www.theshelter.foundation
+   ```
+7. Após obter o certificado, reative o proxy do Cloudflare
+
+**Opção 2: Usar validação DNS manual**
+```bash
+sudo certbot certonly --manual --preferred-challenges dns \
+  -d theshelter.foundation -d www.theshelter.foundation
+```
+Siga as instruções para adicionar um registro TXT no DNS do Cloudflare.
+
+**Opção 3: Script automatizado**
+Use o script `fix_ssl_cloudflare.sh` incluído no repositório:
+```bash
+# Tornar executável
+chmod +x fix_ssl_cloudflare.sh
+
+# Executar como root
+sudo ./fix_ssl_cloudflare.sh
+```
+
+### Verificar certificado:
+```bash
+# Listar certificados instalados
+sudo certbot certificates
+
+# Testar renovação automática
+sudo certbot renew --dry-run
+
+# Verificar configuração SSL
+curl -I https://theshelter.foundation
+```
+
+### Configuração automática do Nginx:
+Após executar o Certbot com sucesso, o Nginx será automaticamente configurado para:
+- Redirecionar HTTP → HTTPS
+- Usar o certificado Let's Encrypt
+- Configurar headers de segurança
+
+### Renovação automática:
+O Certbot configura um cron job automático para renovar os certificados. Verifique com:
+```bash
+sudo systemctl list-timers | grep certbot
+```
+
 ## 🚨 Solução de Problemas
 
 ### Aplicação não responde (502 Bad Gateway):
