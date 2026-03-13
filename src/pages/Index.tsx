@@ -238,19 +238,21 @@ const features = [
   description: "Visualize projetos sociais ao redor do mundo com transparência geográfica total do seu impacto."
 },
 {
+  icon: ShoppingBag,
+  title: "Marketplace Solidário",
+  description: "Compre produtos de comunidades e projetos sociais. Cada compra gera impacto direto.",
+  comingSoon: true
+},
+{
   icon: Heart,
   title: "Doações Internacionais",
   description: "Sistema seguro de doações com taxa administrativa mínima (5–7%) e total rastreabilidade."
 },
 {
-  icon: ShoppingBag,
-  title: "Marketplace Solidário",
-  description: "Compre produtos de comunidades e projetos sociais. Cada compra gera impacto direto."
-},
-{
   icon: Play,
   title: "Streaming de Impacto",
-  description: "Conteúdo audiovisual documentário mostrando o impacto real dos projetos apoiados."
+  description: "Conteúdo audiovisual documentário mostrando o impacto real dos projetos apoiados.",
+  comingSoon: true
 }];
 
 
@@ -273,10 +275,18 @@ const FeaturesSection = () =>
           <div className="relative group h-full">
             <div className="absolute -left-2 -top-2 w-full h-full bg-[#00522D] -z-10 transition-transform duration-500 group-hover:-translate-x-1 group-hover:-translate-y-1" />
             <div
-              className="p-8 bg-background border border-border hover:border-primary transition-all duration-300 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.3)] h-full">
+              className="p-8 bg-background border border-border hover:border-primary transition-all duration-300 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.3)] h-full relative">
                 <feature.icon className="w-8 h-8 text-primary mb-6 group-hover:scale-110 transition-transform" />
                 <h3 className="font-display text-xl font-bold text-foreground mb-3">{feature.title}</h3>
                 <p className="font-body text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
+                
+                {feature.comingSoon && (
+                  <div className="absolute bottom-4 right-4 animate-pulse">
+                    <span className="font-body text-[10px] uppercase tracking-widest text-primary font-bold bg-primary/10 px-2 py-1 rounded">
+                      Em breve
+                    </span>
+                  </div>
+                )}
             </div>
           </div>
         </ScrollReveal>
@@ -397,8 +407,8 @@ const Footer = () =>
           <h4 className="font-body text-xs uppercase tracking-[0.3em] text-primary md:text-primary-foreground font-semibold bg-primary-foreground md:bg-transparent px-3 md:px-0 py-2 md:py-0 mb-4 block -mx-6 md:mx-0 pl-6 md:pl-0">Plataforma</h4>
           <ul className="space-y-2 font-body text-sm text-primary-foreground/90">
             <li><a href="#" className="hover:text-primary transition-colors">Mapa de Projetos</a></li>
-            <li><a href="#" className="hover:text-primary transition-colors">Doações</a></li>
             <li><a href="#" className="hover:text-primary transition-colors">Marketplace</a></li>
+            <li><a href="#" className="hover:text-primary transition-colors">Doações</a></li>
             <li><a href="#" className="hover:text-primary transition-colors">Streaming</a></li>
           </ul>
         </div>

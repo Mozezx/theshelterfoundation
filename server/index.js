@@ -38,7 +38,7 @@ app.post("/api/create-donation-session", async (req, res) => {
       customer_email: donorInfo?.email,
       line_items: [{
         price_data: {
-          currency: currency || "eur",
+          currency: currency || "brl",
           product_data: { 
             name: `Doação SHELTER - ${frequency || "Uma vez"}`,
             description: `Doador: ${donorInfo?.firstName} ${donorInfo?.lastName}`,
@@ -48,7 +48,6 @@ app.post("/api/create-donation-session", async (req, res) => {
         },
         quantity: 1,
       }],
-      payment_method_types: ["card"], // Você pode adicionar mais métodos aqui
       return_url: `${req.headers.origin}/donation-success?session_id={CHECKOUT_SESSION_ID}`,
       metadata: {
         donor_first_name: donorInfo?.firstName || "",
@@ -99,7 +98,7 @@ app.post("/api/create-checkout-session", async (req, res) => {
         price_data: {
           // Se o Adaptive Pricing estiver ativo no Dashboard, o Stripe Checkout Sessions
           // cuidará da conversão se não forçado para uma moeda específica.
-          currency: currency || "eur",
+          currency: currency || "brl",
           product_data: { name: "Doação SHELTER" },
           unit_amount: amount,
           ...(isRecurring && { recurring: FREQUENCY_MAP[frequency] })

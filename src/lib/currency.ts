@@ -81,8 +81,8 @@ const COUNTRY_TO_CURRENCY: Record<string, { code: string; symbol: string }> = {
 };
 
 const DEFAULT_CURRENCY: CurrencyInfo = {
-  code: "eur",
-  symbol: "€",
+  code: "brl",
+  symbol: "R$",
   country: "unknown",
 };
 
@@ -112,7 +112,7 @@ export async function detectCurrency(): Promise<CurrencyInfo> {
 
     return currencyInfo;
   } catch (error) {
-    console.warn("Currency detection failed, using default (EUR):", error);
+    console.warn("Currency detection failed, using default (BRL):", error);
     return DEFAULT_CURRENCY;
   }
 }
