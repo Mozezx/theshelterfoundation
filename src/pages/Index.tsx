@@ -95,7 +95,12 @@ const Navbar = () => {
           <a href="#about" className={`transition-colors ${scrolled ? "hover:text-primary-foreground/70" : "hover:text-foreground/60"}`}>Sobre Nós</a>
           <a href="#regions" className={`transition-colors ${scrolled ? "hover:text-primary-foreground/70" : "hover:text-foreground/60"}`}>Regiões</a>
         </div>
-        <Button variant="hero" size="sm" className={`hidden md:inline-flex transition-colors duration-300 ${scrolled ? "!bg-primary-foreground !text-primary hover:!bg-primary-foreground/90" : ""}`}>
+        <Button 
+          variant="hero" 
+          size="sm" 
+          className={`hidden md:inline-flex transition-colors duration-300 ${scrolled ? "!bg-primary-foreground !text-primary hover:!bg-primary-foreground/90" : ""}`}
+          onClick={() => document.getElementById('donate')?.scrollIntoView({ behavior: 'smooth' })}
+        >
           Apoiar Agora
         </Button>
         <button
@@ -111,7 +116,15 @@ const Navbar = () => {
           <a href="#features" onClick={closeMenu} className={`font-body text-sm uppercase tracking-widest transition-colors ${scrolled ? "text-primary-foreground/80 hover:text-primary-foreground" : "text-foreground/80 hover:text-foreground"}`}>Plataforma</a>
           <a href="#about" onClick={closeMenu} className={`font-body text-sm uppercase tracking-widest transition-colors ${scrolled ? "text-primary-foreground/80 hover:text-primary-foreground" : "text-foreground/80 hover:text-foreground"}`}>Sobre Nós</a>
           <a href="#regions" onClick={closeMenu} className={`font-body text-sm uppercase tracking-widest transition-colors ${scrolled ? "text-primary-foreground/80 hover:text-primary-foreground" : "text-foreground/80 hover:text-foreground"}`}>Regiões</a>
-          <Button variant="hero" size="sm" className={`mt-2 w-full ${scrolled ? "" : "!bg-foreground !text-primary-foreground"}`} onClick={closeMenu}>
+          <Button 
+            variant="hero" 
+            size="sm" 
+            className={`mt-2 w-full ${scrolled ? "" : "!bg-foreground !text-primary-foreground"}`} 
+            onClick={() => {
+              closeMenu();
+              document.getElementById('donate')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
             Apoiar Agora
           </Button>
         </div>
@@ -379,7 +392,12 @@ const CTASection = () =>
       </ScrollReveal>
       <ScrollReveal direction="right" delay={300}>
         <div className="flex flex-wrap justify-center gap-4">
-          <Button variant="hero" size="lg" className="gap-2">
+          <Button 
+            variant="hero" 
+            size="lg" 
+            className="gap-2"
+            onClick={() => document.getElementById('donate')?.scrollIntoView({ behavior: 'smooth' })}
+          >
             Começar Agora <ArrowRight className="w-4 h-4" />
           </Button>
           <Button variant="outline" size="lg" className="uppercase tracking-widest text-xs font-body font-semibold">
@@ -452,7 +470,12 @@ const Index = () => {
       <CTASection />
       <Footer />
       <div className="md:hidden fixed bottom-4 right-4 z-50">
-        <Button variant="hero" size="sm" className="shadow-lg relative overflow-hidden">
+        <Button 
+          variant="hero" 
+          size="sm" 
+          className="shadow-lg relative overflow-hidden"
+          onClick={() => document.getElementById('donate')?.scrollIntoView({ behavior: 'smooth' })}
+        >
           Doar Agora
           <span className="absolute inset-0 animate-shimmer bg-gradient-to-r from-transparent via-white/30 to-transparent" />
         </Button>
