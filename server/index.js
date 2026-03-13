@@ -113,8 +113,13 @@ app.post("/api/create-checkout-session", async (req, res) => {
 
 if (process.env.NODE_ENV === "production") {
   const distPath = path.resolve(__dirname, "../dist");
+  // Servir arquivos estáticos
   app.use(express.static(distPath));
-  app.get("*", (req, res) => res.sendFile(path.join(distPath, "index.html")));
+  // Para SPA: redirecionar todas as outras rotas para index.html
+  // Usar expressão regular para evitar problema com path-to-regexp
+  app.get(/^\/(?!api).*/, (req, res) => {
+    res.sendFile(path.join(distPath, "index.html"));
+  });
 }
 
 app.listen(PORT, () => {

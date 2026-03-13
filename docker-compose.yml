@@ -1,13 +1,44 @@
 version: '3.8'
 
 services:
+  db:
+    image: postgres:15
+    container_name: shelter-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: shelter_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-sua_senha_segura}
+      POSTGRES_DB: shelter_db
+    volumes:
+      - shelter_pgdata:/var/lib/postgresql/data
+    networks:
+      - shelter_network
+    # Não expõe portas para o host - apenas comunicação interna na rede
+
   web:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "3001:3001"
+    container_name: shelter-app
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://shelter_user:${DB_PASSWORD:-sua_senha_segura}@db:5432/shelter_db
+      - NODE_ENV=production
+      - SERVER_PORT=3001
     env_file:
       - .env
-    restart: always
-    container_name: shelter-app
+    ports:
+      # Expõe apenas no localhost para isolamento
+      - "127.0.0.1:4100:3001"
+    networks:
+      - shelter_network
+
+networks:
+  shelter_network:
+    name: shelter_network
+    driver: bridge
+
+volumes:
+  shelter_pgdata:
