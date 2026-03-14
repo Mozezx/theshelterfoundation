@@ -16,7 +16,8 @@ docker-compose.yml
 docker-compose.*.yml
 
 # Outros arquivos indesejáveis
-.env
+# Comentado para permitir que o Vite leia os VITE_ durante o build
+#.env
 .env.local
 .env.development.local
 .env.test.local
