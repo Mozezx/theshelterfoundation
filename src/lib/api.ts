@@ -7,3 +7,5 @@ const envUrl = import.meta.env.VITE_API_BASE_URL;
 
 // Ensure there is no trailing slash to prevent double slashes like //api/...
 export const API_BASE_URL = envUrl ? envUrl.replace(/\/$/, '') : "http://localhost:3001";
+
+console.log("DEBUG: Using API_BASE_URL =", API_BASE_URL);
