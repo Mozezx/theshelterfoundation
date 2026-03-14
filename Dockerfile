@@ -12,6 +12,12 @@ RUN npm ci
 # Copia todo o código-fonte restante do projeto para o contêiner
 COPY . .
 
+# Recebe as variáveis estritamente necessárias para o frontend via args
+ARG VITE_STRIPE_PUBLISHABLE_KEY
+ARG VITE_API_BASE_URL
+ENV VITE_STRIPE_PUBLISHABLE_KEY=$VITE_STRIPE_PUBLISHABLE_KEY
+ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
+
 # Faz o build do projeto para produção usando o Vite
 RUN npm run build
 
