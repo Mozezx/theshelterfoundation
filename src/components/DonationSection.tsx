@@ -8,11 +8,10 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { detectCurrency, toStripeAmount, type CurrencyInfo } from "@/lib/currency";
 import { getStripe } from "@/lib/stripe";
 import { EmbeddedCheckoutProvider, EmbeddedCheckout } from "@stripe/react-stripe-js";
+import { API_BASE_URL } from "@/lib/api";
 
 const frequencies = ["Uma vez", "Mensal", "Trimestral", "Anual"];
 const defaultAmounts = [200, 100, 50, 25, 10];
-
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
 
 const DonationSection = () => {
   const [frequency, setFrequency] = useState("Uma vez");
@@ -69,7 +68,7 @@ const DonationSection = () => {
       const stripeAmount = toStripeAmount(donationValue, currencyInfo.code);
       const endpoint = "/api/create-donation-session";
 
-      const response = await fetch(`${API_URL}${endpoint}`, {
+      const response = await fetch(`${API_BASE_URL}${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

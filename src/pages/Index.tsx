@@ -199,7 +199,7 @@ const HeroSection = () => {
 
 const MissionSection = () =>
 <section id="mission" className="relative py-24 md:py-32">
-    <div className="absolute inset-0 bg-gradient-to-b from-transparent from-0% via-background/90 via-30% to-background/90 to-100% -z-10" />
+    <div className="absolute inset-0 bg-gradient-to-b from-transparent from-0% via-background/45 via-30% to-background/45 to-100% -z-10" />
     <div className="container mx-auto px-6">
       <div className="grid md:grid-cols-2 gap-16 items-center">
         <div>
@@ -211,14 +211,14 @@ const MissionSection = () =>
             <div className="section-divider mb-8" />
           </ScrollReveal>
           <ScrollReveal direction="left" delay={150}>
-            <p className="font-body text-lg text-muted-foreground leading-relaxed mb-6">
+            <p className="font-body text-lg text-black font-bold leading-relaxed mb-6">
               A SHELTER é uma startup social internacional que facilita apoio financeiro 
               para projetos sociais entre Europa, América do Norte e América do Sul, 
               criando um ecossistema de impacto sustentável.
             </p>
           </ScrollReveal>
           <ScrollReveal direction="left" delay={300}>
-            <p className="font-body text-muted-foreground leading-relaxed">
+            <p className="font-body text-black font-bold leading-relaxed">
               Com estrutura jurídica na Bélgica e Holanda, garantimos total conformidade 
               com regulamentos europeus de captação e programas sociais internacionais.
             </p>
@@ -271,7 +271,7 @@ const features = [
 
 const FeaturesSection = () =>
 <section id="features" className="relative py-24 md:py-32">
-    <div className="absolute inset-0 bg-gradient-to-t from-transparent from-0% via-card/90 via-30% to-card/90 to-100% -z-10" />
+    <div className="absolute inset-0 bg-gradient-to-t from-transparent from-0% via-card/45 via-30% to-card/45 to-100% -z-10" />
     <div className="container mx-auto px-6">
       <ScrollReveal direction="right">
         <div className="text-center max-w-2xl mx-auto mb-20">

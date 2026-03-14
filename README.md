@@ -29,10 +29,18 @@ git clone <YOUR_GIT_URL>
 # Step 2: Navigate to the project directory.
 cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
+# Step 3: Configure Environment Variables
+# Copy the example file and update it with API URL and Stripe keys
+cp .env.example .env
+
+# Set these variables in .env:
+# VITE_API_BASE_URL=https://theshelter.foundation:4100
+# VITE_STRIPE_PUBLISHABLE_KEY=pk_test_...
+
+# Step 4: Install the necessary dependencies.
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Step 5: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
 
