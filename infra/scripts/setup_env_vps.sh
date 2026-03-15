@@ -62,4 +62,4 @@ else
 fi
 
 echo ""
-echo "✅ Próximo passo: Executar ./deploy.sh"
+echo "✅ Próximo passo: Executar bash infra/scripts/deploy.sh"

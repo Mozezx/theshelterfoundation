@@ -17,8 +17,8 @@ services:
 
   web:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ../../
+      dockerfile: infra/docker/Dockerfile
       args:
         - VITE_STRIPE_PUBLISHABLE_KEY=${VITE_STRIPE_PUBLISHABLE_KEY}
         - VITE_API_BASE_URL=${VITE_API_BASE_URL}

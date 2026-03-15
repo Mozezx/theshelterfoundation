@@ -68,14 +68,23 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## 🚀 Deploy e Infraestrutura
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+Este projeto foi organizado para facilitar o deploy em VPS usando Docker e Nginx.
 
-## Can I connect a custom domain to my Lovable project?
+### Fluxo Oficial
+O fluxo de deploy oficial está documentado em: [docs/deploy/README.md](docs/deploy/README.md)
 
-Yes, you can!
+### Estrutura de Pastas
+- `infra/docker/`: Arquivos Docker Compose e Dockerfile.
+- `infra/nginx/`: Configurações de servidor Nginx.
+- `infra/scripts/`: Scripts utilitários de deploy e manutenção.
+- `docs/`: Documentação oficial consolidada.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Como rodar localmente (Full Stack)
+1. Instale as dependências na raiz: `npm install`
+2. Instale as dependências do servidor: `cd server && npm install`
+3. Configure o `.env` na raiz.
+4. Inicie o servidor: `npm run dev:server`
+5. Inicie o frontend: `npm run dev`
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
